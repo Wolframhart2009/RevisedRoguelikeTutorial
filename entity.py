@@ -33,6 +33,9 @@ class Entity:
 		if self.inventory:
 			self.inventory.owner = self
 	
+	def distance(self, x, y):
+		return math.sqrt((x - self.x) ** 2 + (y - self.y) ** 2)
+	
 	def move(self, dx, dy):
 		#Moves the entity from x, y by dx, dy
 		self.x += dx
