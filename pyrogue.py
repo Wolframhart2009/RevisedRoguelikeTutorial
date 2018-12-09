@@ -150,7 +150,7 @@ def main():
 				item_use_results = player.inventory.use_item(targeting_item, entities=entities, fov_map=fov_map, target_x=target_x, target_y=target_y)
 				player_turn_results.extend(item_use_results)
 			elif right_click:
-				player_turn_result.append({
+				player_turn_results.append({
 					'targeting_cancelled': True
 				})
 				
@@ -158,7 +158,7 @@ def main():
 			if game_state in (GameStates.DROP_INVENTORY, GameStates.SHOW_INVENTORY):
 				game_state = previous_state
 			elif game_state == GameStates.TARGETING:
-				player_turn_result.append({
+				player_turn_results.append({
 					'targeting_cancelled': True
 				})
 			else:
