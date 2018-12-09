@@ -8,6 +8,8 @@ from components.fighter import Fighter
 from components.ai import BasicMonster
 from components.item import Item
 from components.item_functions import heal, cast_lightning, cast_fireball, cast_confusion
+from components.equipment import EquipmentSlots
+from components.equippable import Equippable
 from components.stairs import Stairs
 from map_objects.tile import Tile
 from map_objects.rectangle import Rect
@@ -124,6 +126,8 @@ class GameMap:
 		
 		item_choices = {
 			'healing_potion': 35, 
+			'sword': from_dungeon_level([[5, 4]], self.dungeon_level),
+			'shield': from_dungeon_level([[15, 8]], self.dungeon_level),
 			'lighning_scroll': from_dungeon_level([[25, 4]], self.dungeon_level),
 			'fireball_scroll': from_dungeon_level([[25, 6]], self.dungeon_level), 
 			'confusion_scroll': from_dungeon_level([[10, 2]], self.dungeon_level)
@@ -171,6 +175,12 @@ class GameMap:
 				elif item_choice == 'lighning_scroll':
 					item_component = Item(use_function=cast_lightning, maximum_range=5, damage=40)
 					item = Entity(x, y, '#', libtcod.yellow, 'Lightning Scroll', render_order=RenderOrder.ITEM, item=item_component)
+				elif item_choice == 'sword':
+					equippable_component = Equippable(EquipmentSlots.MAIN_HAND, power_bonus=3)
+					item = Entity(x, y, '/', libtcod.sky, 'Lightning Scroll', render_order=RenderOrder.ITEM, item=item_component)
+				elif item_choice == 'shield':
+					equippable_component = Equippable(EquipmentSlots.OFF_HAND, defense_bonus=1)
+					item = Entity(x, y, ']', libtcod.darker_orange, 'Lightning Scroll', render_order=RenderOrder.ITEM, item=item_component)
 				
 				entities.append(item)
 	
